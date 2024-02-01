@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx --env-file .env src/server/server.ts",
-    "start:local": "nodemon -L"
+    "start:local": "nodemon -L",
+    "start": "tsx --env-file .env src/server/server.ts"
   },
   "author": "Isaac Carvalho",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "koa": "^2.15.0",
     "koa-body": "^6.0.1",
     "koa-router": "^12.0.1",
+    "mongoose": "^8.1.1",
     "nodemon": "^3.0.3",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"

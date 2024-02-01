@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:  
+  api:
+    build: .
+    restart: always
+    volumes:
+      - ./startup.sh:/usr/app/startup.sh
+      - ./src:/usr/app/src
+      - ./package.json:/usr/app/package.json
+      - ./nodemon.json:/usr/app/nodemon.json
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    container_name: corujao-api
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      SERVER_PORT: ${SERVER_PORT}
+      URL_CLUSTER: ${URL_CLUSTER}
