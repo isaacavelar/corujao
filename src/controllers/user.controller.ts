@@ -1,8 +1,8 @@
 import { Context } from "koa";
 import userModel from "../models/user.model";
 import { PayloadCreateUser, User } from "../interfaces/user.interface";
-import fs from 'fs/promises';
-import { resolve } from 'path';
+import fs from 'node:fs/promises';
+import { resolve } from 'node:path';
 
 export class UserController {
     public static async createUser(ctx: Context, next: Function) {
@@ -42,5 +42,10 @@ export class UserController {
             ctx.body = err;
             ctx.status = 500;
         }      
+    }
+
+    public static async authenticated(ctx: Context, next: Function) {
+        ctx.body = ctx.user;
+        ctx.status = 200;
     }
 }
