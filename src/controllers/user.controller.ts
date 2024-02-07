@@ -3,14 +3,14 @@ import userModel from "../models/user.model";
 import { PayloadCreateUser, User } from "../interfaces/user.interface";
 import fs from 'node:fs/promises';
 import { resolve } from 'node:path';
+import moment from 'moment';
 
 export class UserController {
     public static async createUser(ctx: Context, next: Function) {
        const { files, body } = ctx.request;
-
+       
         const userData: PayloadCreateUser = { ...files, ...body };
         
-
         const userAlreadyExist = await userModel.findOne({
             email:userData.email
         }).lean();
@@ -21,8 +21,7 @@ export class UserController {
             return;
         }
 
-        const filepath = resolve(__dirname, 'test.txt');
-
+        const filepath = resolve('./src/assets', 'img_user.png');
         
         const file = await fs.readFile(userData.logo ? userData.logo.filepath: filepath);
 
@@ -31,7 +30,7 @@ export class UserController {
             email: userData.email,
             password: userData.password,
             logo: file,
-            createDate: '03/01/2023 02:39:00'
+            createDate: moment().format('DD/MM/YYYY HH:mm:ss')
         }
 
         try {

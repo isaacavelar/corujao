@@ -1,6 +1,6 @@
 {
     "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
     "watch": ["src"],
-    "exec": "tsx --env-file .env src/server/server.ts",
+    "exec": "npm run verify && tsx --env-file .env src/server/server.ts",
     "ext": "ts,json"
 }

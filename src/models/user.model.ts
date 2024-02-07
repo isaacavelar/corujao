@@ -20,7 +20,16 @@ const schema = new Schema(
         password: String,
         salt: String,
         logo: Buffer
-    }
+    },
+    {
+        timestamps: true,
+        toObject: {
+            virtuals: true,
+        },
+        toJSON: {
+            virtuals: true,
+        },
+    },
 );
 
 schema.methods.generateHash = function(password) {

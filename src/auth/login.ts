@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { Context } from 'koa';
 import userModel, { UserModel } from '../models/user.model';
 import { LoginJwtDecode } from '../interfaces/login.interface';
+import { User } from '../interfaces/user.interface';
 
 export class Auth {
     public static async login(ctx: Context, next: Function) {
@@ -94,7 +95,7 @@ export class Auth {
 
             const user = await userModel.findById(userId);
 
-            ctx.user = user;
+            ctx.user = user || {} as UserModel;
             ctx.body = user;
         } catch (err) {
             ctx.body = { message: 'Falha na autenticação. RefreshToken invalido' }
